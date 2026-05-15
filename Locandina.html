@@ -667,17 +667,35 @@ function inviaRsvp(e) {
     return;
   }
 
-  // Simula invio (in produzione: fetch a un endpoint o Google Form)
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxhbgvCF-KyeU99J2fZf6JcJrHhM21vOkHK0jdoDdAJG3B2MjP01EV3ryhlfRpDn1Gb/exec';
+
   const btn = document.getElementById('rsvp-btn');
   btn.textContent = '⏳ Invio in corso...';
   btn.disabled = true;
 
-  setTimeout(() => {
+  const payload = {
+    nome:     document.getElementById('rsvp-nome').value.trim(),
+    telefono: document.getElementById('rsvp-tel').value.trim(),
+    persone:  document.getElementById('rsvp-bambini').value,
+    stand:    document.getElementById('rsvp-interesse').value,
+    note:     document.getElementById('rsvp-note').value.trim()
+  };
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
     document.getElementById('rsvp-form-wrap').style.display = 'none';
     const success = document.getElementById('rsvp-success');
     success.style.display = 'block';
     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 900);
+  })
+  .catch(() => {
+    btn.textContent = '✅ Confermo la mia presenza';
+    btn.disabled = false;
+    alert('Problema di rete. Riprova tra un momento.');
+  });
 }
 </script>
 </body>
