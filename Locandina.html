@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Festa Mater Ecclesiae – 24 Maggio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange:   #e86b2a;
+    --gold:     #f5a623;
+    --deep:     #1a1a2e;
+    --warm:     #fff8f0;
+    --text:     #2d2d2d;
+    --muted:    #6b6b6b;
+    --radius:   12px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--warm);
+    color: var(--text);
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    background: var(--deep);
+    color: #fff;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(232,107,42,.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 30%, rgba(245,166,35,.18) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .35rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .hero h1 span { color: var(--gold); font-size: clamp(2rem, 5.5vw, 4.2rem); }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,.75);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    position: relative;
+  }
+  .hero-details {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: .03em;
+    position: relative;
+  }
+
+  .section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 3rem);
+  }
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--deep);
+    line-height: 1.2;
+  }
+  .section-title span { color: var(--orange); }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (max-width: 680px) { .intro-grid { grid-template-columns: 1fr; } }
+  .intro-text p {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 1rem;
+    max-width: 52ch;
+  }
+  .intro-text p strong { color: var(--orange); }
+  .intro-img {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    aspect-ratio: 4/3;
+  }
+  .intro-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .stands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    transition: transform .2s ease, box-shadow .2s ease;
+    position: relative;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.13); }
+  .card-img { height: 170px; overflow: hidden; background: #eee; }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-img-placeholder {
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+  }
+  .card-body { padding: 1.25rem; position: relative; overflow: hidden; }
+  .card-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+  .card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: .4rem;
+    color: var(--deep);
+  }
+  .card-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 5.5rem;
+    font-weight: 900;
+    color: var(--orange);
+    opacity: .13;
+    position: absolute;
+    top: 2px; right: 10px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .card-body p { font-size: .9rem; color: var(--muted); line-height: 1.55; }
+  .card-tag {
+    display: inline-block;
+    margin-top: .75rem;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .25rem .75rem;
+    border-radius: 999px;
+    background: #fff3e8;
+    color: var(--orange);
+  }
+
+  .funziona-box {
+    background: var(--deep);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .funziona-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(245,166,35,.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .funziona-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 900;
+    margin-bottom: .5rem;
+    position: relative;
+  }
+  .funziona-box h2 span { color: var(--gold); }
+  .funziona-box > .intro {
+    font-size: 1rem;
+    color: rgba(255,255,255,.7);
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: left;
+    background: rgba(255,255,255,.07);
+    border-radius: 16px;
+    padding: 1.1rem 1.4rem;
+  }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 2rem;
+    flex-shrink: 0;
+  }
+  .step-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+  .step-text strong {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: .2rem;
+  }
+  .step-text span {
+    font-size: .9rem;
+    color: rgba(255,255,255,.6);
+    line-height: 1.45;
+  }
+
+  .fondatori-box {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: clamp(2rem, 5vw, 3rem);
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  }
+  .fondatori-box p {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 60ch;
+    margin-bottom: 1.25rem;
+  }
+  .fondatori-box p strong { color: var(--deep); }
+  .fondatori-box p em { color: var(--orange); font-style: italic; }
+  .fondatori-img {
+    border-radius: calc(var(--radius) - 4px);
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,.1);
+    aspect-ratio: 16/9;
+    margin-top: 1.75rem;
+  }
+  .fondatori-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--orange);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: .85rem 2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+    box-shadow: 0 4px 16px rgba(232,107,42,.35);
+    font-family: 'Inter', sans-serif;
+    margin-bottom: .5rem;
+  }
+  .cta-btn:hover { background: #c8531a; transform: translateY(-2px); }
+
+  .divider { border: none; border-top: 1.5px solid rgba(0,0,0,.07); margin: 0; }
+
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,.55);
+    text-align: center;
+    font-size: .875rem;
+    padding: 2.5rem 1.5rem;
+    line-height: 1.8;
+  }
+  footer strong { color: #fff; }
+
+  /* SVG logo */
+  .logo-svg { display: inline-block; vertical-align: middle; margin-right: .4rem; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-badge">
+    <svg class="logo-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+    Parrocchia Mater Ecclesiae · Bari
+  </div>
+  <h1>ANCORA INSIEME<br><span>Il futuro è qui</span></h1>
+  <div class="hero-details">
+    <span>📅 Domenica 24 Maggio 2026</span>
+    <span>🕔 Ore 17:00</span>
+    <span>📍 Cortile e Salone Parrocchiale</span>
+  </div>
+</header>
+
+<section class="section">
+  <h2 class="section-title">Una <span>grande festa</span>,<br>per fare cose che contano!</h2>
+  <div class="intro-grid">
+    <div class="intro-text">
+      <p>Vieni a giocare, cantare, dipingere, recitare.<br>
+      Porta i tuoi amici — <strong>più siete, meglio è</strong>.</p>
+      <p>Gira, prova, mangia, ridi!</p>
+      <p>Questa parrocchia non è un posto dove si viene ad ascoltare.<br>
+      <strong>È un posto dove si viene a costruire.</strong></p>
+    </div>
+    <div class="intro-img">
+      <img src="img/intro.jpeg"
+           alt="La comunità della Parrocchia Mater Ecclesiae" width="480" height="360" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section">
+  <h2 class="section-title">Gli <span>stand</span> della festa</h2>
+  <div class="stands-grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="img/movimento.jpeg"
+             alt="Ragazzi della parrocchia al campetto" width="280" height="170" loading="lazy" style="object-position: center 70%;">
+      </div>
+      <div class="card-body">
+        <span class="card-letter">M</span>
+        <div class="card-icon">⚽</div>
+        <h3>Movimento</h3>
+        <p><em>"Nessuno resta fermo."</em><br>Sport e inclusione. Tornei lampo di calcetto e basket.</p>
+        <span class="card-tag">Cortile</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="img/arte.jpeg"
+             alt="Ragazzi della parrocchia che fanno lavoretti creativi" width="280" height="170" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="card-letter">A</span>
+        <div class="card-icon">🖌️</div>
+        <h3>Arte</h3>
+        <p><em>"La forma delle idee."</em><br>Creatività e sperimentazione. Un grande cartellone per tutti — aggiungi un colore, un disegno, una parola.</p>
+        <span class="card-tag">Cortile</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="img/teatro.jpeg"
+             alt="Ragazzi della parrocchia con maschere di carnevale" width="280" height="170" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="card-letter">T</span>
+        <div class="card-icon">🎭</div>
+        <h3>Teatro</h3>
+        <p><em>"Ogni storia merita un palco."</em><br>Teatro e gestione del palco. Improvvisazione, coreografie — chi ha piacere, partecipa!</p>
+        <span class="card-tag">Palco</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="img/eventi.jpeg"
+             alt="Evento sul palco della Parrocchia Mater Ecclesiae" width="280" height="170" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="card-letter">E</span>
+        <div class="card-icon">🎤</div>
+        <h3>Eventi</h3>
+        <p><em>"Il ritmo della comunità."</em><br>Musica, audio e animazione. Microfono sempre aperto — canta, suona, improvvisa. La jam session nasce da sola.</p>
+        <span class="card-tag">Salone</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="img/racconto.jpeg"
+             alt="Ragazzi della parrocchia che scrivono e documentano" width="280" height="170" loading="lazy">
+      </div>
+      <div class="card-body">
+        <span class="card-letter">R</span>
+        <div class="card-icon">📱</div>
+        <h3>Racconto</h3>
+        <p><em>"Nessuno è invisibile."</em><br>Foto, video e storie vere. Racconta il quartiere e il tuo lavoro finisce sul web.</p>
+        <span class="card-tag">Salone · Contest</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img-placeholder" style="background: linear-gradient(135deg, #fff3e8 0%, #f5a623 100%);">
+        <span>🍕</span>
+      </div>
+      <div class="card-body">
+        <span class="card-letter">🍕</span>
+        <div class="card-icon">🍕</div>
+        <h3>Cibi & bevande</h3>
+        <p>Panzerottini, focacce, sandwich e una bevanda. Quota a persona 5€. Un ulteriore momento per conoscersi.</p>
+        <span class="card-tag">Cortile</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section">
+  <div class="funziona-box">
+    <h2>Come <span>funziona</span>?</h2>
+    <p class="intro">È più semplice di quanto pensi.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-icon">🚪</div>
+        <div class="step-text">
+          <strong>Arrivi alla festa</strong>
+          <span>Domenica 24 maggio, alle 17:00. Nel Cortile e nel Salone Parrocchiale.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-icon">👀</div>
+        <div class="step-text">
+          <strong>Giri gli stand</strong>
+          <span>Cinque gruppi ti aspettano: sport, arte, teatro, musica, video. Guarda, prova, fai domande!</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-icon">❤️</div>
+        <div class="step-text">
+          <strong>Scegli ciò che ti piace</strong>
+          <span>Nessuna fretta. Puoi anche iscriverti a più di un gruppo e decidere con calma.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-icon">✍️</div>
+        <div class="step-text">
+          <strong>Aderisci e diventa Fondatore</strong>
+          <span>Potrai dire "Io c'ero, dall'inizio. Ci ho sempre creduto".</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section">
+  <h2 class="section-title">Diventa un <span>Fondatore</span></h2>
+  <div class="fondatori-box">
+    <p>
+      Stiamo creando i nuovi gruppi <strong>da zero</strong>.<br>
+      Esprimi la tua <strong>creatività</strong>. Fai conoscere il tuo <strong>talento</strong>.<br>
+      <strong>Costruisci insieme a noi</strong> il tuo futuro e quello della <strong>comunità</strong>.
+    </p>
+    <p>
+      Se pensi di poterti divertire con noi, aderisci stasera al progetto.<br>
+      <strong>Diventa uno dei fondatori</strong> e lascia il tuo segno inconfondibile.<br>
+      <br>
+      Tra un anno, potrai dire: <em>Io c'ero sin dall'inizio. Ci ho creduto veramente.</em>
+    </p>
+
+    <div class="fondatori-img">
+      <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/5aaa18b150a43bef7c8162bcfa77bf5a4d41fdc2.jpg"
+           alt="Murale di comunità realizzato da giovani" width="960" height="540" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- RSVP SECTION -->
+<section class="section" id="rsvp">
+  <h2 class="section-title">📩 <span>Ci sarai?</span> Confermaci la tua presenza</h2>
+  <div class="rsvp-box" id="rsvp-form-wrap">
+    <p class="rsvp-intro">Nessun obbligo — ma se ci dici che vieni, possiamo organizzarci meglio per il cibo e gli stand. Bastano 30 secondi.</p>
+    <form id="rsvp-form" onsubmit="inviaRsvp(event)" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="rsvp-nome">Nome e cognome *</label>
+          <input type="text" id="rsvp-nome" placeholder="Es. Mario Rossi" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="rsvp-tel">Telefono (WhatsApp) *</label>
+          <input type="tel" id="rsvp-tel" placeholder="Es. 333 1234567" required autocomplete="tel">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="rsvp-bambini">Quante persone?</label>
+          <select id="rsvp-bambini">
+            <option value="">Seleziona</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4+">4 o più</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="rsvp-interesse">Quale stand ti incuriosisce di più?</label>
+          <select id="rsvp-interesse">
+            <option value="">Seleziona (facoltativo)</option>
+            <option value="sport">⚽ Movimento (Sport)</option>
+            <option value="murales">🖌️ Arte</option>
+            <option value="teatro">🎭 Teatro</option>
+            <option value="musica">🎤 Eventi (Musica)</option>
+            <option value="media">📱 Racconto (Video)</option>
+            <option value="tutto">Un po' tutto!</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group form-group-full">
+        <label for="rsvp-note">Vuoi dirci qualcosa di te? (facoltativo)</label>
+        <textarea id="rsvp-note" rows="3" placeholder="Es. 'Adoro ballare!'' oppure, 'Suono il pianoforte'"></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="cta-btn" id="rsvp-btn">✅ Confermo la mia presenza</button>
+        <p class="form-note">I dati vengono usati solo per organizzare la festa. Nessuna newsletter, nessuno spam.</p>
+      </div>
+    </form>
+  </div>
+  <!-- Messaggio di conferma -->
+  <div class="rsvp-success" id="rsvp-success" style="display:none;">
+    <div class="success-icon">🎉</div>
+    <h3>Perfetto, ci vediamo il 24 maggio!</h3>
+    <p>Grazie per averci confermato la presenza.<br>Ti aspettiamo dalle <strong>17:00</strong> in cortile — porta i tuoi amici!</p>
+    <p style="margin-top:1rem; font-size:.9rem; color:var(--muted);">Hai cambiato idea? Scrivici su WhatsApp.</p>
+  </div>
+</section>
+
+<style>
+.rsvp-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+}
+.rsvp-intro {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  max-width: 60ch;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+@media (max-width: 580px) { .form-row { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: .4rem; }
+.form-group-full { margin-bottom: 1.25rem; }
+.form-group label {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--deep);
+  letter-spacing: .02em;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: .75rem 1rem;
+  border: 1.5px solid rgba(0,0,0,.12);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: #fff;
+  transition: border-color .18s, box-shadow .18s;
+  outline: none;
+  width: 100%;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(232,107,42,.15);
+}
+.form-group input.error,
+.form-group select.error { border-color: #c0392b; }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-submit { display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; margin-top: .5rem; }
+.form-note { font-size: .78rem; color: var(--muted); font-style: italic; }
+.rsvp-success {
+  background: #fff;
+  border-radius: 12px;
+  padding: clamp(2rem, 5vw, 3rem);
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  text-align: center;
+}
+.success-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+.rsvp-success h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--deep);
+  margin-bottom: .75rem;
+}
+.rsvp-success p { font-size: 1.05rem; color: var(--muted); line-height: 1.65; max-width: 50ch; margin: 0 auto; }
+</style>
+
+<hr class="divider">
+
+<footer>
+  <strong>Parrocchia Mater Ecclesiae · Bari</strong><br>
+  Domenica 24 Maggio 2026 · ore 17:00 – 20:30<br>
+  <span style="margin-top:.5rem; display:block; font-size:.8rem;">
+    Condividi con amici e famiglie del quartiere 🙏
+  </span>
+</footer>
+
+<script>
+function vota(el) {
+  const group = el.closest('.contest-names');
+  group.querySelectorAll('.name-badge').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function inviaRsvp(e) {
+  e.preventDefault();
+  const nome = document.getElementById('rsvp-nome');
+  const tel  = document.getElementById('rsvp-tel');
+  let valid = true;
+
+  [nome, tel].forEach(el => {
+    el.classList.remove('error');
+    if (!el.value.trim()) { el.classList.add('error'); valid = false; }
+  });
+
+  if (!valid) {
+    nome.focus();
+    return;
+  }
+
+  // Simula invio (in produzione: fetch a un endpoint o Google Form)
+  const btn = document.getElementById('rsvp-btn');
+  btn.textContent = '⏳ Invio in corso...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    document.getElementById('rsvp-form-wrap').style.display = 'none';
+    const success = document.getElementById('rsvp-success');
+    success.style.display = 'block';
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 900);
+}
+</script>
+</body>
+</html>
